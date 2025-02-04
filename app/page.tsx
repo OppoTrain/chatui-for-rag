@@ -54,14 +54,14 @@ export default function Home() {
             transition={{ delay: 0.5, duration: 0.5 }}
             className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8"
           >
-            {['About', 'Resources', 'Impact'].map((item, index) => (
+            {['About', 'Resources', 'Collaborate'].map((item, index) => (
               <Link href={`/${item.toLowerCase()}`} key={item}>
                 <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
                   <h2 className="text-2xl font-semibold mb-2 text-blue-600 dark:text-blue-400">{item}</h2>
                   <p className="text-gray-600 dark:text-gray-400">
                     {index === 0 && "Learn about our mission and vision."}
                     {index === 1 && "Access valuable human rights resources."}
-                    {index === 2 && "See the real-world impact of our work."}
+                    {index === 2 && "Get in touch with us for questions and support."}
                   </p>
                 </div>
               </Link>
