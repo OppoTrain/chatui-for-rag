@@ -1,10 +1,10 @@
-'use client'
+"use client"
 
-import { Sun, Moon } from 'lucide-react'
-import { Switch } from '@/components/ui/switch'
-import { motion } from 'framer-motion'
-import Link from 'next/link'
-import { useTheme } from 'next-themes'
+import { Sun, Moon } from "lucide-react"
+import { Switch } from "@/components/ui/switch"
+import { motion } from "framer-motion"
+import Link from "next/link"
+import { useTheme } from "next-themes"
 
 export default function Header() {
   const { theme, setTheme } = useTheme()
@@ -17,7 +17,7 @@ export default function Header() {
       className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md shadow-md sticky top-0 z-10"
     >
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <div className="flex items-center space-x-6">
+        <Link href="/">
           <motion.h1
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -26,16 +26,40 @@ export default function Header() {
           >
             Humanai
           </motion.h1>
-          <nav>
-            <ul className="flex space-x-4">
-              <li><Link href="/" className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400">Home</Link></li>
-              <li><Link href="/chat" className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400">Chat</Link></li>
-              <li><Link href="/about" className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400">About</Link></li>
-              <li><Link href="/resources" className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400">Resources</Link></li>
-              <li><Link href="/collaborate" className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400">collaborate</Link></li>
-            </ul>
-          </nav>
-        </div>
+        </Link>
+        <nav>
+          <ul className="flex space-x-4">
+            <li>
+              <Link href="/" className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/chat"
+                className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
+              >
+                Chat
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/team"
+                className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
+              >
+                Team
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/#faq"
+                className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
+              >
+                FAQ
+              </Link>
+            </li>
+          </ul>
+        </nav>
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -44,8 +68,8 @@ export default function Header() {
         >
           <Sun className="h-5 w-5 text-yellow-500 dark:text-yellow-300" />
           <Switch
-            checked={theme === 'dark'}
-            onCheckedChange={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            checked={theme === "dark"}
+            onCheckedChange={() => setTheme(theme === "dark" ? "light" : "dark")}
             className="data-[state=checked]:bg-blue-600"
           />
           <Moon className="h-5 w-5 text-blue-600 dark:text-blue-400" />
@@ -54,4 +78,3 @@ export default function Header() {
     </motion.header>
   )
 }
-

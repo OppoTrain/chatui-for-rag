@@ -2,35 +2,58 @@
 
 import { useState, useEffect } from "react"
 import { useTheme } from "next-themes"
+import { v4 as uuidv4 } from "uuid"
+import { collection, query, where, getDocs, addDoc, deleteDoc, doc } from "firebase/firestore"
+import { db } from "../../firebase/config"
 import Header from "../components/Header"
 import ChatWindow from "../components/ChatWindow"
 import ChatHistory from "../components/ChatHistory"
 import { ThemeProvider } from "../components/ThemeProvider"
+import Footer from "../components/Footer"
 
 export default function Chat() {
   const [currentChat, setCurrentChat] = useState<string[]>([])
   const [chatHistory, setChatHistory] = useState<{ id: string; title: string; messages: string[]; model: string }[]>([])
-  const [currentModel, setCurrentModel] = useState<string>("rag-1")
+  const [currentModel, setCurrentModel] = useState<string>("Humanai-V1")
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const [userId, setUserId] = useState<string | null>(null)
 
   useEffect(() => {
     setMounted(true)
-    // Load chat history from localStorage
-    const storedHistory = localStorage.getItem("chatHistory")
-    if (storedHistory) {
-      setChatHistory(JSON.parse(storedHistory))
+    // Get or set user ID in localStorage
+    let storedUserId = localStorage.getItem("userId")
+    if (!storedUserId) {
+      storedUserId = uuidv4()
+      localStorage.setItem("userId", storedUserId)
+    }
+    setUserId(storedUserId)
+
+    // Load chat history from Firestore
+    if (storedUserId) {
+      loadChatHistory(storedUserId)
     }
   }, [])
 
-  const clearHistory = () => {
+  const loadChatHistory = async (userId: string) => {
+    const q = query(collection(db, "chatHistory"), where("userId", "==", userId))
+    const querySnapshot = await getDocs(q)
+    const history = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+    setChatHistory(history as { id: string; title: string; messages: string[]; model: string }[])
+  }
+
+  const clearHistory = async () => {
+    if (!userId) return
+    const q = query(collection(db, "chatHistory"), where("userId", "==", userId))
+    const querySnapshot = await getDocs(q)
+    querySnapshot.forEach(async (document) => {
+      await deleteDoc(doc(db, "chatHistory", document.id))
+    })
     setChatHistory([])
     setCurrentChat([])
-    localStorage.removeItem("chatHistory")
   }
 
   const startNewChat = () => {
-    // Only reset the current chat UI, don't create a new history entry
     setCurrentChat([])
   }
 
@@ -38,13 +61,22 @@ export default function Chat() {
     setCurrentChat(chat)
   }
 
-  const deleteChat = (id: string) => {
+  const deleteChat = async (id: string) => {
+    await deleteDoc(doc(db, "chatHistory", id))
     const updatedHistory = chatHistory.filter((chat) => chat.id !== id)
     setChatHistory(updatedHistory)
-    localStorage.setItem("chatHistory", JSON.stringify(updatedHistory))
     if (currentChat.length > 0 && chatHistory.find((chat) => chat.id === id)?.messages === currentChat) {
       setCurrentChat([])
     }
+  }
+
+  const addChatToHistory = async (newChat: { title: string; messages: string[]; model: string }) => {
+    if (!userId) return
+    const docRef = await addDoc(collection(db, "chatHistory"), {
+      ...newChat,
+      userId: userId,
+    })
+    setChatHistory([...chatHistory, { id: docRef.id, ...newChat }])
   }
 
   if (!mounted) return null
@@ -72,10 +104,12 @@ export default function Chat() {
                 setChatHistory={setChatHistory}
                 currentModel={currentModel}
                 setCurrentModel={setCurrentModel}
+                addChatToHistory={addChatToHistory}
               />
             </div>
           </div>
         </main>
+         <Footer />
       </div>
     </ThemeProvider>
   )
