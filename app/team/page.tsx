@@ -36,7 +36,7 @@ export default function Team() {
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900 transition-colors duration-500">
-        <Header darkMode={theme === 'dark'} setDarkMode={(isDark) => setTheme(isDark ? 'dark' : 'light')} />
+        <Header />
         <div className="container mx-auto px-4 py-16 w-3/4 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
             <h2 className="text-4xl font-extrabold mb-6 text-blue-600 dark:text-blue-400 tracking-wide">MEET OUR TECH TALENTS</h2>
