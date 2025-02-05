@@ -99,13 +99,13 @@ export default function ChatWindow({
             messages: updatedChat,
             model: currentModel,
           });
-          setChatHistory(prev => [...prev, { id: docRef.id, title: generateChatTitle(updatedChat), messages: updatedChat, model: currentModel }]);
+          //setChatHistory(prev => [...prev, { id: docRef.id, title: generateChatTitle(updatedChat), messages: updatedChat, model: currentModel }]);
         } else {
           const existingChat = chatHistory.find(chat => chat.messages.length > 0 && chat.messages[0] === updatedChat[0]);
           if (existingChat) {
             const docRef = doc(db, "chats", existingChat.id);
             await updateDoc(docRef, { messages: updatedChat });
-            setChatHistory(prev => prev.map(chat => chat.id === existingChat.id ? { ...chat, messages: updatedChat } : chat));
+            //setChatHistory(prev => prev.map(chat => chat.id === existingChat.id ? { ...chat, messages: updatedChat } : chat));
           }
         }
       } catch (error) {
