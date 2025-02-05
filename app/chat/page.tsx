@@ -104,7 +104,6 @@ export default function Chat() {
                 setChatHistory={setChatHistory}
                 currentModel={currentModel}
                 setCurrentModel={setCurrentModel}
-                addChatToHistory={addChatToHistory}
               />
             </div>
           </div>
