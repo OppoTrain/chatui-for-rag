@@ -33,10 +33,6 @@ export default function ChatHistory({ history, clearHistory, startNewChat, loadC
               <div className="cursor-pointer" onClick={() => loadChat(chat.messages)}>
                 <h3 className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-1">{chat.title}</h3>
                 <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">Model: {chat.model}</p>
-                {/* <div className="text-sm text-gray-600 dark:text-gray-300">
-                  <p className="mb-1">{chat.messages[0]}</p>
-                  {chat.messages.length > 1 && <p className="text-gray-500 dark:text-gray-400">...</p>}
-                </div> */}
               </div>
               <Button
                 variant="ghost"

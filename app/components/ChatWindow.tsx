@@ -71,7 +71,7 @@ export default function ChatWindow({
       try {
         const endpoint = currentModel === "Humanai-V1" 
           ? "/summarize" 
-          : "http://54.166.204.83:8000/synthesize/";
+          : "/synthesize";
         
         const requestBody = currentModel === "Humanai-V1" 
           ? { query_text: newMessage }

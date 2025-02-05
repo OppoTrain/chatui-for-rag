@@ -8,6 +8,10 @@ module.exports = {
       {
         source: '/summarize', // the frontend route (used in the frontend to access the backend)
         destination: 'http://3.229.58.122:8000/summarize' // the backend route over HTTP
+      },
+      {
+        source: '/synthesize', // the frontend route (used in the frontend to access the new backend)
+        destination: 'http://54.166.204.83:8000/synthesize' // the new backend route over HTTP
       }
     ];
   },
@@ -19,6 +23,11 @@ module.exports = {
         proxy: {
           '/summarize': {
             target: 'http://3.229.58.122:8000', // backend HTTP server
+            changeOrigin: true,
+            secure: false,
+          },
+          '/synthesize': {
+            target: 'http://54.166.204.83:8000', // new backend HTTP server
             changeOrigin: true,
             secure: false,
           }
