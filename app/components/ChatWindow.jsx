@@ -165,6 +165,7 @@ import { db } from "../../firebase/config";
 import { collection, addDoc, getDocs, query, where, updateDoc, doc } from "firebase/firestore";
 
 
+
 export default function ChatWindow({
   currentChat,
   setCurrentChat,
@@ -185,7 +186,7 @@ export default function ChatWindow({
 
   useEffect(() => {
     const fetchChatHistory = async () => {
-      const q = query(collection(db, "chatHistory"));
+      const q = query(collection(db, "chats"));
       const querySnapshot = await getDocs(q);
       const chats = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
       setChatHistory(chats);
@@ -208,12 +209,12 @@ export default function ChatWindow({
 
       try {
         const endpoint = currentModel === "Humanai-V1" 
-          ? "/synthesize" 
-          : "/summarize";
+          ? "/summarize" 
+          : "/synthesize";
         
         const requestBody = currentModel === "Humanai-V1" 
-          ? { question: newMessage }
-          : { query_text: newMessage };
+          ? { query_text: newMessage }
+          : { question: newMessage };
 
         const response = await fetch(endpoint, {
           method: "POST",
@@ -232,7 +233,7 @@ export default function ChatWindow({
         setCurrentChat(updatedChat);
 
         if (updatedChat.length === 2) {
-          const docRef = await addDoc(collection(db, "chatHistory"), {
+          const docRef = await addDoc(collection(db, "chats"), {
             title: generateChatTitle(updatedChat),
             messages: updatedChat,
             model: currentModel,

@@ -39,7 +39,7 @@ export default function Chat() {
     const q = query(collection(db, "chatHistory"), where("userId", "==", userId))
     const querySnapshot = await getDocs(q)
     const history = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-    setChatHistory(history as { id: string; title: string; messages: string[]; model: string }[])
+    // setChatHistory(history as { id: string; title: string; messages: string[]; model: string }[])
   }
 
   const clearHistory = async () => {
@@ -89,7 +89,7 @@ export default function Chat() {
           <div className="flex flex-col md:flex-row gap-8">
             <div className="w-full md:w-1/4">
               <ChatHistory
-                history={chatHistory}
+                history={[]}
                 clearHistory={clearHistory}
                 startNewChat={startNewChat}
                 loadChat={loadChat}
