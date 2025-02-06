@@ -208,12 +208,12 @@ export default function ChatWindow({
 
       try {
         const endpoint = currentModel === "Humanai-V1" 
-          ? "/summarize" 
-          : "/synthesize";
+          ? "/synthesize" 
+          : "/summarize";
         
         const requestBody = currentModel === "Humanai-V1" 
-          ? { query_text: newMessage }
-          : { question: newMessage };
+          ? { question: newMessage }
+          : { query_text: newMessage };
 
         const response = await fetch(endpoint, {
           method: "POST",
