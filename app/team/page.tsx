@@ -9,18 +9,18 @@ import Footer from '../components/Footer'
 
 export default function Team() {
   const teamMembers = [
-    { name: 'Abed Khooli', role: 'AI Consultant', image: 'https://media.licdn.com/dms/image/v2/C4D03AQEE303lRvZrZA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1516780691927?e=1744243200&v=beta&t=klDkBx7g2DiZM5oi-vA7v6bSeWvU6IZbY2Q9U9axoG8', linkedin: 'https://www.linkedin.com/in/akhooli/' },
-    { name: 'Zaina Saadeddin', role: 'Project Manager', image: 'https://media.licdn.com/dms/image/v2/D4E03AQGxueJEkDBk-w/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1678969302303?e=2147483647&v=beta&t=Su-F0JTZyCgNY7gXmEThR_RT1CwkO25ssg9K5d4PU2Q', linkedin: 'https://www.linkedin.com/in/zainasaadeddin/' },
-    { name: 'Marwan Tarazi', role: 'Domain Expert - Human Rights', image: 'https://media.licdn.com/dms/image/v2/C4D03AQFGCr7sf9VWDA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1574391378735?e=1744243200&v=beta&t=JkwZ2gI0uUISpCUO48fqGqvjzAes1QW3KiEvejHHQH4', linkedin: 'https://www.linkedin.com/in/marwan-tarazi-5219ba20/' },
-    { name: 'Saif Sabelaish', role: 'AI Engineer', image: 'https://media.licdn.com/dms/image/v2/D4E03AQEDeiS6cEhseQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1723327818765?e=2147483647&v=beta&t=dRR5OmB1YIvY28JEl5RVXg326NErTTuX_2NBDm94f0o', linkedin: 'https://www.linkedin.com/in/saifalaasabelaish/' },
-    { name: 'Farah Saleh', role: 'AI Engineer', image: 'https://media.licdn.com/dms/image/v2/D4D03AQE1t6aNeSt_Kw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1720004526221?e=2147483647&v=beta&t=L3XaMJXukH7fRqpwePDQZy1iyl_iHyzXww68F1Ks8DA', linkedin: 'https://www.linkedin.com/in/farah-m-saleh' },
-    { name: 'Hossam Shehadeh', role: 'Software Engineer', image: 'https://media.licdn.com/dms/image/v2/D4D03AQHzK93YdsgGBg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1678200123708?e=2147483647&v=beta&t=kCZCX28zlPZAYdC8JnFakSX5_FnMrZbS_bAXEYa2r6c', linkedin: 'https://www.linkedin.com/in/hossam-shehadeh' },
-    { name: 'Raghad Mahmoud', role: 'AI Engineer', image: 'https://media.licdn.com/dms/image/v2/D4E03AQF2r8O-8kzjaA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1724518527371?e=1744243200&v=beta&t=0fC_NNYMWGMbNP3yGwYkx-0l5l1f669vFh2muO5eYQo', linkedin: 'https://www.linkedin.com/in/raghadzmahmoud/' },
-    { name: 'Ahmad Namrouti', role: 'AI Engineer', image: 'https://media.licdn.com/dms/image/v2/D4D03AQFRNOAPhl1gbg/profile-displayphoto-shrink_200_200/B4DZSoFNF2GcAc-/0/1737986724862?e=2147483647&v=beta&t=Buu6cS7bR-8Ba5xuBGDzLkx2h0MwJ1--6oUEk2B3gkM', linkedin: 'https://www.linkedin.com/in/namroutii/' },
-    { name: 'Renad Iwidat', role: 'AI Engineer', image: 'https://media.licdn.com/dms/image/v2/D4D03AQEO08y9Ufzhzw/profile-displayphoto-shrink_200_200/B4DZSLILPWHIAY-/0/1737500965787?e=2147483647&v=beta&t=22M3B3aMrtvP0QqzV4omV8oEeSuvQNpZyDoYitv4Xxc', linkedin: 'https://www.linkedin.com/in/renadiwidat/' },
-    { name: 'Sara Oraib', role: 'AI Engineer', image: 'https://media.licdn.com/dms/image/v2/D4D03AQENybmlKA4IMA/profile-displayphoto-shrink_200_200/B4DZSjymKHH0AY-/0/1737914739534?e=2147483647&v=beta&t=5Tms9rrIluRlGmdnxmR5W1gjLfRddLdRgLF_2VvlpT4', linkedin: 'https://www.linkedin.com/in/sara-oraib/' },
-    { name: 'Tala Dweikat', role: 'AI Engineer', image: 'https://avatars.githubusercontent.com/u/117400227?s=64&v=4', linkedin: 'https://www.linkedin.com/in/tala-dweikat-a80712276/' },
-    { name: 'Alaa Odeh', role: 'AI Engineer', image: 'https://media.licdn.com/dms/image/v2/D4D03AQH8QthcMCvbDQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1727185202286?e=1744243200&v=beta&t=Pi4PGzu4rDhSl1RnI5sZgmw08HEK7Es1diyjMaUO770', linkedin: 'https://www.linkedin.com/in/alaa-odeh1579/' },
+    { name: 'Abed Khooli', role: 'AI Consultant', image: 'team/Abed-Kooli.jpeg', linkedin: 'https://www.linkedin.com/in/akhooli/' },
+    { name: 'Zaina Saadeddin', role: 'Project Manager', image: 'team/Zaina.jpeg', linkedin: 'https://www.linkedin.com/in/zainasaadeddin/' },
+    { name: 'Marwan Tarazi', role: 'Domain Expert - Human Rights', image: 'team/Marwan.jpeg', linkedin: 'https://www.linkedin.com/in/marwan-tarazi-5219ba20/' },
+    { name: 'Saif Sabelaish', role: 'AI Engineer', image: 'team/Saif.jpeg', linkedin: 'https://www.linkedin.com/in/saifalaasabelaish/' },
+    { name: 'Farah Saleh', role: 'AI Engineer', image: 'team/Farah.jpeg', linkedin: 'https://www.linkedin.com/in/farah-m-saleh' },
+    { name: 'Hossam Shehadeh', role: 'Software Engineer', image: 'team/Hossam.jpeg', linkedin: 'https://www.linkedin.com/in/hossam-shehadeh' },
+    { name: 'Raghad Mahmoud', role: 'AI Engineer', image: 'team/Raghad.jpeg', linkedin: 'https://www.linkedin.com/in/raghadzmahmoud/' },
+    { name: 'Ahmad Namrouti', role: 'AI Engineer', image: 'team/Ahmed.jpeg', linkedin: 'https://www.linkedin.com/in/namroutii/' },
+    { name: 'Renad Iwidat', role: 'AI Engineer', image: 'team/Renad.jpeg', linkedin: 'https://www.linkedin.com/in/renadiwidat/' },
+    { name: 'Sara Oraib', role: 'AI Engineer', image: 'team/Sara.jpeg', linkedin: 'https://www.linkedin.com/in/sara-oraib/' },
+    { name: 'Tala Dweikat', role: 'AI Engineer', image: 'team/Tala.jpg', linkedin: 'https://www.linkedin.com/in/tala-dweikat-a80712276/' },
+    { name: 'Alaa Odeh', role: 'AI Engineer', image: 'team/Alaa.jpeg', linkedin: 'https://www.linkedin.com/in/alaa-odeh1579/' },
    
   ];
 
