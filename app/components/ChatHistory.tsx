@@ -61,6 +61,5 @@ export default function ChatHistory({ history, clearHistory, startNewChat, loadC
         </Button>
       </div>
     </motion.div>
-  )
+  );
 }
-

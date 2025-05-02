@@ -50,7 +50,7 @@ module.exports = {
       },
       {
         source: '/synthesize', // the frontend route (used in the frontend to access the new backend)
-        destination: 'http://3.226.60.99:8000/synthesize' // the new backend route over HTTP
+        destination: 'https://api.humanai.quest/synthesize' // the new backend route over HTTP
       }
     ];
   },
@@ -66,7 +66,7 @@ module.exports = {
             secure: false,
           },
           '/synthesize': {
-            target: 'http://3.226.60.99:8000', // new backend HTTP server
+            target: 'https://api.humanai.quest/synthesize', // new backend HTTP server
             changeOrigin: true,
             secure: false,
           }

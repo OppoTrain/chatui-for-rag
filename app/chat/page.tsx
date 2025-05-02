@@ -14,10 +14,12 @@ import Footer from "../components/Footer"
 export default function Chat() {
   const [currentChat, setCurrentChat] = useState<string[]>([])
   const [chatHistory, setChatHistory] = useState<{ id: string; title: string; messages: string[]; model: string }[]>([])
-  const [currentModel, setCurrentModel] = useState<string>("Humanai-V1")
+  const [currentModel, setCurrentModel] = useState<string>("Humanai-V2")
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const [userId, setUserId] = useState<string | null>(null)
+  const [chatId, setChatId] = useState<string | null>(null); 
+
 
   useEffect(() => {
     setMounted(true)
@@ -36,18 +38,18 @@ export default function Chat() {
   }, [])
 
   const loadChatHistory = async (userId: string) => {
-    const q = query(collection(db, "chatHistory"), where("userId", "==", userId))
+    const q = query(collection(db, "chats"), where("userId", "==", userId))
     const querySnapshot = await getDocs(q)
     const history = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-    // setChatHistory(history as { id: string; title: string; messages: string[]; model: string }[])
+    setChatHistory(history as { id: string; title: string; messages: string[]; model: string }[])
   }
 
   const clearHistory = async () => {
     if (!userId) return
-    const q = query(collection(db, "chatHistory"), where("userId", "==", userId))
+    const q = query(collection(db, "chats"), where("userId", "==", userId))
     const querySnapshot = await getDocs(q)
     querySnapshot.forEach(async (document) => {
-      await deleteDoc(doc(db, "chatHistory", document.id))
+      await deleteDoc(doc(db, "chats", document.id))
     })
     setChatHistory([])
     setCurrentChat([])
@@ -55,6 +57,7 @@ export default function Chat() {
 
   const startNewChat = () => {
     setCurrentChat([])
+    setChatId(null);
   }
 
   const loadChat = (chat: string[]) => {
@@ -62,7 +65,7 @@ export default function Chat() {
   }
 
   const deleteChat = async (id: string) => {
-    await deleteDoc(doc(db, "chatHistory", id))
+    await deleteDoc(doc(db, "chats", id))
     const updatedHistory = chatHistory.filter((chat) => chat.id !== id)
     setChatHistory(updatedHistory)
     if (currentChat.length > 0 && chatHistory.find((chat) => chat.id === id)?.messages === currentChat) {
@@ -72,7 +75,7 @@ export default function Chat() {
 
   const addChatToHistory = async (newChat: { title: string; messages: string[]; model: string }) => {
     if (!userId) return
-    const docRef = await addDoc(collection(db, "chatHistory"), {
+    const docRef = await addDoc(collection(db, "chats"), {
       ...newChat,
       userId: userId,
     })
@@ -89,11 +92,12 @@ export default function Chat() {
           <div className="flex flex-col md:flex-row gap-8">
             <div className="w-full md:w-1/4">
               <ChatHistory
-                history={[]}
+                history={chatHistory}
                 clearHistory={clearHistory}
                 startNewChat={startNewChat}
                 loadChat={loadChat}
                 deleteChat={deleteChat}
+                
               />
             </div>
             <div className="w-full md:w-3/4">
@@ -104,6 +108,9 @@ export default function Chat() {
                 setChatHistory={setChatHistory}
                 currentModel={currentModel}
                 setCurrentModel={setCurrentModel}
+                chatId={chatId}
+                setChatId={setChatId}
+   
               />
             </div>
           </div>
